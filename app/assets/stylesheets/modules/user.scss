@@ -1,0 +1,33 @@
+.new-area, .login-area {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  color: #3C455C;
+  .new-box {
+    padding: 50px 100px;
+    width: 80%;
+    height: 750px;
+    border: 1px solid #DDE2E3;
+    h2 {
+      font-size: 30px;
+      font-weight: bold;
+      margin-bottom: 18px;
+    }
+  .form-part {
+    border: 1px solid #DDE2E3;
+    padding: 5px;
+    width: 500px;
+    height: 40px;
+    }
+    .sign-up {
+      padding: 12px;
+      border: none;
+      background-color: #DDE2E3;
+    }
+  }
+  .right-box {
+  }
+}
+
