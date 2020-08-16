@@ -1,18 +1,32 @@
 <div class="user-new-area">
   <div class="user-new-box">
       <div class="left-box">
-      <h2>新規登録</h2>
-      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-        <%= render "devise/shared/error_messages", resource: resource %>
+      <h2>編集する</h2>
+      <%= form_for @user do |f| %>
 
         <div class="form-group">
           <%= f.label :"名前*" %><br />
           <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "form-part" %>
         </div>  
+
+        <div class="form-group">
+          <%= f.label :"年齢" %><br />
+          <%= f.text_field :age, autofocus: true, autocomplete: "age", class: "form-part" %>
+        </div>  
+
+        <div class="form-group">
+          <%= f.label :"性別" %><br />
+          <%= f.select :gender, User.genders.keys, {prompt: '選択してください'}, autofocus: true, autocomplete: "gender", class: "form-part" %>
+        </div>
         
         <div class="form-group">
           <%= f.label :"仕事・特技*" %><br />
           <%= f.text_field :work, autofocus: true, autocomplete: "work", class: "form-part" %>
+        </div> 
+        
+        <div class="form-group">
+          <%= f.label :"イメージ" %><br />
+          <%= f.file_field :image, autofocus: true, autocomplete: "image", class: "form-part" %>
         </div>
 
         <div class="form-group">
@@ -25,33 +39,24 @@
           <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-part" %>
         </div>
 
-        <%# <div class="field">
-          <%= f.label :性別 %>
-          <%# <%= f.select :gender, User.genders.keys, {prompt: '選択してください'}, autofocus: true, autocomplete: "gender" %>
-        <%# </div> %> 
-
         <div class="form-group">
-          <%= f.label :"パスワード*" %>
-          <% if @minimum_password_length %>
-          <em>(<%= @minimum_password_length %> 文字以上)</em>
-          <% end %><br />
-          <%= f.password_field :password, autocomplete: "new-password", class: "form-part" %>
-        </div>
-
-        <div class="form-group">
-          <%= f.label :"パスワード確認*" %><br />
-          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-part" %>
+          <%= f.label :"自己紹介" %><br />
+          <%= f.text_field :profile, autofocus: true, autocomplete: "profile", class: "form-part" %>
         </div>
 
         <div class="actions">
-          <%= f.submit "登録する",class: "sign-up" %>
+          <%= f.submit "更新する",class: "user-update" %>
         </div>
       <% end %>
 
-      <%= render "devise/shared/links" %>
     </div>
     <div class="right-box">
       <%= image_tag 'tori2.jpg', class:"login-img" %> 
     </div>
   </div>
 </div>
+
+
+
+
+     

@@ -6,6 +6,8 @@ class User < ApplicationRecord
 
   validates :name, presence: true, uniqueness: true
   validates :work, :adress, presence: true
+  
+  mount_uploader :image, ImageUploader
 
   enum gender: {男性:1, 女性:2}
 
@@ -19,5 +21,13 @@ class User < ApplicationRecord
     徳島県:36,香川県:37,愛媛県:38,高知県:39,
     福岡県:40,佐賀県:41,長崎県:42,熊本県:43,大分県:44,宮崎県:45,鹿児島県:46,沖縄県:47
   }
+
+  def self.search(search)
+    if search
+      User.where('work LIKE(?)', "%#{search}%")
+    else
+      User.all
+    end
+  end
 
 end

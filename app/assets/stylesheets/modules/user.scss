@@ -1,15 +1,18 @@
-.new-area, .login-area {
+.user-new-area, .login-area {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100vw;
   height: 100vh;
-  color: #3C455C;
-  .new-box {
+  color: #9AACB8;
+  .user-new-box {
+    margin-top: 80px;
     padding: 50px 100px;
     width: 80%;
-    height: 750px;
+    height: 900px;
     border: 1px solid #DDE2E3;
+    display: flex;
+    position: relative;
     h2 {
       font-size: 30px;
       font-weight: bold;
@@ -21,13 +24,92 @@
     width: 500px;
     height: 40px;
     }
-    .sign-up {
+    .sign-up, .user-update, {
       padding: 12px;
       border: none;
       background-color: #DDE2E3;
     }
-  }
-  .right-box {
+    .right-box {
+      position: absolute;
+      top: 500px;
+      left: 800px;
+      .login-img {    
+        width: 300px;
+        height: 300px;
+        opacity: 70%;
+        object-fit: cover;
+        clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+      }
+    }
   }
 }
 
+.profile-box {
+  margin-top: 50px;
+  display: flex;
+  background-color: #DDE2E3;
+  opacity: 70%;
+  padding: 40px;
+  .user-profile {
+    margin:0 200px;
+    width: 300px;
+    &__name {
+      font-size: 50px;
+    }
+  }
+  .user-img {
+    &__item { 
+      width: 350px;
+      height: 350px;
+      object-fit: cover;
+      clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+
+    }
+  }
+}
+
+.search-box {
+  padding: 40px;
+  display: flex;
+  justify-content: center;
+  .search-input {
+    border: 1px solid #DDE2E3;
+    padding: 10px;
+    width: 500px;
+  }
+  .search-btn {
+    padding: 12px;
+    border: none;
+    background-color: #9AACB8;
+  }
+}
+
+.users {
+  padding: 40px;
+  display: flex;
+  background-color: #DDE2E3;
+  .user-box {
+    margin-right: 70px;
+    padding: 40px;
+    opacity: 80%;
+     .user-img {
+      &__item {
+        width: 250px;
+        height: 250px;
+        object-fit: cover;
+        clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+      }
+      .user-info {
+        text-align: center;
+        margin-top: 20px;
+        a {
+          text-decoration: none;
+        }
+        p {
+          margin: 3px;
+          color: #B37C57;
+        }
+      }
+    }
+  }
+}

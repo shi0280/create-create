@@ -1,0 +1,43 @@
+<header>
+    <div class="header-left">
+      <h1>Creators*</h1>
+    </div>
+    <div class="header-right">
+      <ul class="header-nav">
+        <li><%= link_to "Home", root_path %></li>
+        <% if user_signed_in?%>
+          <li><%= link_to "マイページ", user_path(current_user.id) %></li>
+          <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+        <% else %>
+          <li><%= link_to "ログイン", new_user_session_path %></li>
+          <li><%= link_to "新規登録", new_user_registration_path %></li>
+        <% end %>
+      </ul> 
+    </div>
+</header>
+
+<div class="search-box">
+  <%= form_with(url: search_users_path, local: true, method: :get, class: "search-form") do |form| %>
+    <%= form.text_field :keyword, placeholder: "クリエイターを探す", class: "search-input" %>
+    <%= form.submit "検索", class: "search-btn" %>
+  <% end %>
+</div>
+
+<div class="users">
+  <% @users.each do |user| %>
+    <div class="user-box">
+      <div class="user-img">
+        <%= link_to user_path(user.id) do %>
+          <%= image_tag user.image.url, class: "user-img__item" %>
+        <% end %>
+        <div class="user-info">
+          <%= link_to user_path(user.id) do %>
+            <p><%= user.name %></p>
+            <p><%= user.work %></p>
+            <p><%= user.adress %></p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

@@ -13,7 +13,6 @@
 |email|string|null: false, unique: true|
 |password|string|null: false, unique: true|
 ### Association
-- has_many :works
 - has_many :messages
 - has_many :users_groups
 - has_many :groups,  through:  :users_groups
@@ -48,13 +47,3 @@
 - belongs_to :user
 - belongs_to :group
 
-
-## worksテーブル
-|Column|Type|Options|
-|------|----|-------|
-|title|string|null: false|
-|image|string|null: false|
-|text|text||
-|user_id|integer|null: false, foreign_key: true|
-### Association
-- belongs_to :user

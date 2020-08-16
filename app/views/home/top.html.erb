@@ -1,8 +1,40 @@
-<h1>Create*</h1>
-<div class=home-top> 
-  <p>新規登録</p>
-  <p>ログイン</p>
-  <p>クリエイターと出会う</p>
-  <p>イベント情報</p>
-  <p>仲間募集</p>
+<header>
+    <div class="header-left">
+      <h1>Create*</h1>
+    </div>
+    <div class="header-right">
+      <ul class="header-nav">
+        <li><%= link_to "Home", root_path %></li>
+        <% if user_signed_in?%>
+          <li><%= link_to "マイページ", user_path(current_user.id) %></li>
+          <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+        <% else %>
+          <li><%= link_to "ログイン", new_user_session_path %></li>
+          <li><%= link_to "新規登録", new_user_registration_path %></li>
+        <% end %>
+      </ul> 
+    </div>
+</header>
+  
+  <div class="home">
+  <div class="home-top"> 
+  
+    <div class="home-menu">
+      <p><%= link_to "クリエイターと出会う", users_path %></p>
+      <p>イベント情報</p>
+      <p>仲間を募集する</p>
+    </div>  
+    <div class="home-img1">    
+      <%= image_tag 'nokos.jpg', class:"home-img1__box" %> 
+    </div>  
+    <div class="home-img2">    
+      <%= image_tag 'flower5.jpg', class:"home-img2__box" %> 
+    </div>
+    
+  </div>
+  <div class="color-box">
+    <%# <% if user_signed_in?  %>
+      <%# <%= @user.name %>
+    <%# <% end %>      
+  </div>
 </div>
