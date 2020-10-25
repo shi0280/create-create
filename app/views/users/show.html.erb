@@ -1,0 +1,78 @@
+<header>
+    <div class="header-left">
+      <% if @user.id == current_user.id %>
+        <h1>Mypage*</h1>
+      <% else %>
+        <h1><%= @user.name %>'s page</h1>
+      <% end %>
+    </div>
+    <div class="header-right">
+      <ul class="header-nav">
+        <li><%= link_to "Home", root_path %></li>
+        <% if @user.id == current_user.id %>
+          <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+          <li><%= link_to "プロフィール編集", edit_user_path(@user.id) %></li>
+          <li>仲間</li>
+          <li>メッセージ<i class="far fa-comment-alt"></i></li>
+        <% else %>
+          <li><%= link_to "クリエイター一覧", users_path %></li>
+        <% end %>
+      </ul> 
+    </div>
+</header>
+
+<div class="profile-box">
+  <div class="user-profile">
+    <p class="user-profile__name"><%= @user.name %></p>
+    <p>age: <%= @user.age %></p>
+    <p>gender: <%= @user.gender %></p>
+    <p>address: <%= @user.adress %></p>
+    <p>speciality: <%= @user.work %></p>
+    <p>profile: <%= @user.profile %></p>
+    <% if @user.id == current_user.id %>
+      <p>emai: <%= @user.email %></p>
+    <% end %>
+  </div>  
+  <div class="user-img">
+    <% if @user.image? %>  
+      <%= image_tag @user.image.url, class: "user-img__item" %>
+    <% else %>
+      <%= image_tag 'noimage2.png', class: "user-img__item"  %>
+    <% end %>
+  </div>  
+</div>
+
+<% if @user.id == current_user.id %>
+  <div class="post-form">
+    <div class="post-form__title">
+      <p>作品を投稿する</p>
+    </div>
+    <div class="post-form__box">
+      <%= form_with(model: [@post], local: true) do |form| %>
+        <div class="post-field">
+          <%= form.text_field :title, placeholder: "タイトル" ,class: "form-part" %>
+        </div>
+
+        <div class="post-field">
+          <%= form.file_field :image,class: "form-part" %>
+        </div>
+
+        <div class="post-actions">
+          <%= form.submit "投稿",class: "form-part" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+<div class="post-box">
+  <% @user.posts.each do |post| %>
+    <div class="post">
+      <%= image_tag post.image.url, class: "post-image" %>
+      <div class="icons">
+        <h5><%= post.user.name %></h5>
+        <p><%= post.title %></p>
+      </div>
+    </div>
+  <% end %>
+</div>
