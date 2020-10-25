@@ -68,6 +68,20 @@
   }
 }
 
+.post-form {
+  padding: 20px 0;
+  opacity: 70%;
+  width: 100%;
+  display: flex;
+  justify-content: start;
+  &__title {
+    margin-left: 240px;
+  }
+  &__box {
+    margin-left: 20px;
+  }
+}
+
 .search-box {
   padding: 40px;
   display: flex;
@@ -87,6 +101,7 @@
 .users {
   padding: 40px;
   display: flex;
+  flex-wrap: wrap;
   background-color: #DDE2E3;
   .user-box {
     margin-right: 70px;
@@ -111,5 +126,21 @@
         }
       }
     }
+  }
+}
+
+.post-box {
+  margin-top: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  .post {
+    color: #9AACB8;
+    margin: 20px 20px;
+    .post-image {
+      width: 400px;
+      height: 400px;
+      object-fit: cover;
+    }
+
   }
 }

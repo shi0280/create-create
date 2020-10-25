@@ -1,9 +1,9 @@
 <header>
     <div class="header-left">
       <% if @user.id == current_user.id %>
-       <h1>Mypage*</h1>
+        <h1>Mypage*</h1>
       <% else %>
-       <h1><%= @user.name %>'s page</h1>
+        <h1><%= @user.name %>'s page</h1>
       <% end %>
     </div>
     <div class="header-right">
@@ -14,7 +14,6 @@
           <li><%= link_to "プロフィール編集", edit_user_path(@user.id) %></li>
           <li>仲間</li>
           <li>メッセージ<i class="far fa-comment-alt"></i></li>
-          <li>作品を投稿する<i class="fa fa-send-o" aria-hidden="true"></i></li>
         <% else %>
           <li><%= link_to "クリエイター一覧", users_path %></li>
         <% end %>
@@ -43,3 +42,37 @@
   </div>  
 </div>
 
+<% if @user.id == current_user.id %>
+  <div class="post-form">
+    <div class="post-form__title">
+      <p>作品を投稿する</p>
+    </div>
+    <div class="post-form__box">
+      <%= form_with(model: [@post], local: true) do |form| %>
+        <div class="post-field">
+          <%= form.text_field :title, placeholder: "タイトル" ,class: "form-part" %>
+        </div>
+
+        <div class="post-field">
+          <%= form.file_field :image,class: "form-part" %>
+        </div>
+
+        <div class="post-actions">
+          <%= form.submit "投稿",class: "form-part" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+<div class="post-box">
+  <% @user.posts.each do |post| %>
+    <div class="post">
+      <%= image_tag post.image.url, class: "post-image" %>
+      <div class="icons">
+        <h5><%= post.user.name %></h5>
+        <p><%= post.title %></p>
+      </div>
+    </div>
+  <% end %>
+</div>
