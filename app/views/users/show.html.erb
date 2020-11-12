@@ -65,6 +65,14 @@
   </div>
 <% end %>
 
+<span id="user_<%= @user.id %>" class="follow-wrapper">
+  <%= render 'follow_form', user: @user if signed_in? %>
+</span>
+
+<h4>
+  <%= render 'users/stats' %>
+</h4>
+
 <div class="post-box">
   <% @user.posts.each do |post| %>
     <div class="post">
