@@ -17,10 +17,23 @@
 </header>
 
 <div class="search-box">
-  <%= form_with(url: search_users_path, local: true, method: :get, class: "search-form") do |form| %>
-    <%= form.text_field :keyword, placeholder: "クリエイターを探す", class: "search-input" %>
-    <%= form.submit "検索", class: "search-btn" %>
+  <%= search_form_for @q do |f| %>
+    <div class="search-item">
+      <%= f.label :work, "Work: 　" %>
+      <%= f.search_field :work_cont %>
+    </div>
+    <div class="search-item">
+      <%= f.label :age, "Age:　　" %>
+      <%= f.number_field :age_gteq %>以上〜
+      <%= f.number_field :age_lt %>未満
+    </div>
+    <div class="search-item">
+      <%= f.label :adress, "Address:" %>
+      <%= f.select :adress_eq, User.adresses.to_a.map{|k, v| [User.adresses_i18n[k], v]} %>
+    </div>
+    <%= f.submit "検索" %> 
   <% end %>
+  
 </div>
 
 <div class="users">
