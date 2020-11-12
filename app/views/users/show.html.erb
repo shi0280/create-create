@@ -12,10 +12,11 @@
         <% if @user.id == current_user.id %>
           <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
           <li><%= link_to "プロフィール編集", edit_user_path(@user.id) %></li>
-          <li>仲間</li>
+          <li><%= link_to "フォロー", relationships_path %></li>
           <li>メッセージ<i class="far fa-comment-alt"></i></li>
         <% else %>
           <li><%= link_to "クリエイター一覧", users_path %></li>
+          <li>メッセージを送る<i class="far fa-comment-alt"></i></li>
         <% end %>
       </ul> 
     </div>
@@ -64,6 +65,8 @@
     </div>
   </div>
 <% end %>
+
+<%= render partial: '/relationships/follow_button', user: @user %>
 
 <div class="post-box">
   <% @user.posts.each do |post| %>
