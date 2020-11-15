@@ -1,0 +1,20 @@
+.message-box {
+  display: flex;
+  margin-top: 30px;
+  border-top: 1px solid #efefef;
+  .side {
+    width: 20%;
+    height: 1000px;
+    background-color: #f6f7f8;
+    border-right: 1px solid #efefef;
+  }
+  .main {
+    width: 100%;
+    padding: 0 40px;
+    .main-top {
+      height: 120px;
+      border-bottom: 1px solid #efefef;
+    }
+  }
+}
+
