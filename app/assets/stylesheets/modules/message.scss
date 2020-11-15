@@ -2,18 +2,59 @@
   display: flex;
   margin-top: 30px;
   border-top: 1px solid #efefef;
+  border-bottom: 1px solid #efefef;
+  height: 1000px;
   .side {
     width: 20%;
-    height: 1000px;
     background-color: #f6f7f8;
     border-right: 1px solid #efefef;
+    padding: 40px;
+    .group {
+      height: 50px;
+      margin-bottom : 40px;
+    }
   }
   .main {
     width: 100%;
     padding: 0 40px;
     .main-top {
-      height: 120px;
+      margin-top: 20px;
+      height: 80px;
       border-bottom: 1px solid #efefef;
+      &__member {
+        display: flex;
+        &__name {
+          display: flex;
+          li {
+            margin-right: 10px;
+          }
+        }
+      }
+    }
+    .main-message {
+      height: 800px;
+      padding: 40px;
+      &__box1 {
+        margin-bottom: 10px;
+        padding: 10px;
+        border-radius: 2px;
+        text-align: left;
+        background-color: #fffacd;
+      }
+      &__box2 {
+        margin-bottom: 10px;
+        padding: 10px;
+        border-radius: 2px;
+        text-align: right;
+        background-color: #efefef;
+      }
+    }
+    .main-bottom {
+      display: flex;
+      align-items: center;
+      padding: 40px;
+      height: 100px;
+      border-top: 1px solid #efefef;
     }
   }
 }

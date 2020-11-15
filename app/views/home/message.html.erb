@@ -21,11 +21,50 @@
 
 <body>
   <div class ="message-box" >
-    <div class="side"></div>
+    <div class="side">
+      <div class="group">
+        <p>グループA</p>
+      </div>
+      <div class="group">
+        <p>グループB</p>
+      </div>
+      <div class="group">
+        <p>グループC</p>
+      </div>
+    </div>
     <div class="main">
-      <div class="main-top"></div>
-      <div class="main-message"></div>
-      <div class="main-bottom"></div>
+      <div class="main-top">
+        <div class="main-top__group">
+          <h3 class="main-top__group">test</h3>
+        </div>
+        <div class="main-top__member">
+          <p class="main-top__member__text">Member :</p>
+          <ul class="main-top__member__name">
+            <li>shi</li>
+            <li>shi</li>
+            <li>shi</li>
+          </ul>
+        </div>
+      </div>
+      <div class="main-message">
+        <div class="main-message__box1">
+          おはよう。お久しぶりです。お元気でしたでしょうか？
+        </div>
+        <div class="main-message__box2">
+          こんにちは。ご無沙汰しております。
+        </div>
+      </div>
+      <div class="main-bottom">
+        <form class="message-form">
+          <div class ="form-box">
+            <input type="text", class="form-box__message", placeholder="type a message" >
+            <label class="form-box__imag">
+              <i class="fas fa-image"></i>
+            <input type="file", class="form-box__icon" >
+            <input type="submit", class="send-btn", value="Send" >
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 </body>
