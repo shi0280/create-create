@@ -6,4 +6,8 @@ class HomeController < ApplicationController
   def message
     @user = current_user
   end
+
+  def ivent
+    @user = current_user
+  end
 end

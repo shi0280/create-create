@@ -22,4 +22,5 @@ Rails.application.routes.draw do
     end
   end
   get 'home/message'
+  get 'home/ivent'
 end
