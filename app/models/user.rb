@@ -11,10 +11,7 @@ class User < ApplicationRecord
 # Relation
   has_many :posts
   has_many :follow_requests, dependent: :destroy, foreign_key: :following_id
-  has_many :follow_requests, dependent: :destroy, foreign_key: :followed_id
   has_many :follow_okaies, dependent: :destroy, foreign_key: :following_id
-  has_many :follow_okaies, dependent: :destroy, foreign_key: :followed_id
-  
   mount_uploader :image, ImageUploader
 
 # Enum
