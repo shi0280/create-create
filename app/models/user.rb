@@ -4,14 +4,14 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-# Varidation
+# Validation
   validates :name, presence: true, uniqueness: true
   validates :work, :adress, presence: true
 
 # Relation
   has_many :posts
   has_many :follow_requests, dependent: :destroy, foreign_key: :following_id
-  has_many :follow_okaies, dependent: :destroy, foreign_key: :following_id
+  has_many :follow_okays, dependent: :destroy, foreign_key: :followed_id
   mount_uploader :image, ImageUploader
 
 # Enum

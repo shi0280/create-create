@@ -12,8 +12,8 @@
         <% if @user.id == current_user.id %>
           <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
           <li><%= link_to "プロフィール編集", edit_user_path(@user.id) %></li>
-          <li>仲間</li>
-          <li>メッセージ<i class="far fa-comment-alt"></i></li>
+          <li><%= link_to "仲間", followed_followed_follow_requests_path(@user.id) %></li>
+          <li><%= link_to "メッセージ", '#' %> <i class="far fa-comment-alt"></i></li>
         <% else %>
           <li><%= link_to "クリエイター一覧", users_path %></li>
         <% end %>
@@ -39,8 +39,8 @@
     <% else %>
       <%= image_tag 'noimage2.png', class: "user-img__item"  %>
     <% end %>
-  </div> 
-  <% if @user.id != current_user.id %>
+  </div>
+    <% if @user.id != current_user.id %>
     <% if current_user.already_requested?(@user) %>
       <%= link_to "フォローリクエスト取消", following_followed_follow_requests_path(followed_id:@user.id), method: :delete %>
     <% else %>

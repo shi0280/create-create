@@ -1,0 +1,7 @@
+<% @requests.each do |request| %>
+  <% if request.followed_id == current_user.id %>
+    <%= request.following.name %>
+    <%= link_to "フォロー承認", followed_followed_allow_path(followed_id:current_user.id, id:request.id), method: :post %> 
+    <%= link_to "フォロー拒否", followed_followed_follow_request_path(followed_id:current_user.id, id:request.id), method: :delete %>
+  <% end %>
+<% end %>
