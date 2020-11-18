@@ -12,8 +12,8 @@ class User < ApplicationRecord
   has_many :posts
   has_many :following_requests, dependent: :destroy, foreign_key: :following_id, class_name: "FollowRequest"
   has_many :followed_requests, dependent: :destroy, foreign_key: :followed_id, class_name: "FollowRequest"
-  has_many :following_okays, dependent: :destroy, foreign_key: :following_id, class_name: "FollowRequest"
-  has_many :followed_okays, dependent: :destroy, foreign_key: :followed_id, class_name: "FollowRequest"
+  has_many :following_okays, dependent: :destroy, foreign_key: :following_id, class_name: "FollowOkay"
+  has_many :followed_okays, dependent: :destroy, foreign_key: :followed_id, class_name: "FollowOkay"
   mount_uploader :image, ImageUploader
 
 # Enum

@@ -10,7 +10,7 @@ class Followed::FollowRequestsController < ApplicationController
     following = User.find_by(id:request.following_id)
     follow = current_user.followed_okays.new(followed_id:current_user.id, following_id: following.id)
     follow.save 
-    # request.destroy 
+    request.destroy 
     redirect_back(fallback_location: root_path)
   end
 
