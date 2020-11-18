@@ -13,7 +13,7 @@
           <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
           <li><%= link_to "プロフィール編集", edit_user_path(@user.id) %></li>
           <li><%= link_to "仲間", followed_followed_follow_requests_path(@user.id) %></li>
-          <li><%= link_to "メッセージ", '#' %> <i class="far fa-comment-alt"></i></li>
+          <li><%= link_to "メッセージ", home_message_path %> <i class="far fa-comment-alt"></i></li>
         <% else %>
           <li><%= link_to "マイページ", user_path(current_user.id) %></li>
           <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>

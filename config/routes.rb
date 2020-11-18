@@ -21,4 +21,6 @@ Rails.application.routes.draw do
       resources :follow_requests, only:[:index, :show, :destroy]
     end
   end
+  get 'home/message'
+  get 'home/ivent'
 end
