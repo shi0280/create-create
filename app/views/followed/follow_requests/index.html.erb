@@ -2,7 +2,9 @@
   <p>フォローリクエストが来ています</p>
   <% @followed_requests.each do |request| %>
     <% if request.followed_id == current_user.id %>
-      <%= request.following.name %>
+      <%= link_to user_path(request.following.id) do %>
+        <%= request.following.name %>
+      <% end %>
       <%= link_to "フォロー承認", followed_followed_allow_path(followed_id:current_user.id, id:request.id), method: :post %> 
       <%= link_to "フォロー拒否", followed_followed_follow_request_path(followed_id:current_user.id, id:request.id), method: :delete %>
     <% end %>
@@ -13,12 +15,19 @@
   <p>フォローリクエスト申請中です</p>
   <% @following_requests.each do |request| %>
     <% if request.following_id == current_user.id %>
-      <%= request.followed.name %>
+      <%= link_to user_path(request.followed.id) do %>
+        <%= request.followed.name %>
+      <% end %>
     <% end %>
   <% end %>
 </div>
 
 <div class="friend-lists">
   <p>仲間一覧</p>
+  <% @follow_okays.each do |follow| %>
+    <%= link_to user_path(follow.followed.id) do %>
+      <%= follow.followed.name %>
+    <% end %>
+  <% end %>
 </div>
 
