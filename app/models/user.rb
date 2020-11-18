@@ -10,8 +10,10 @@ class User < ApplicationRecord
 
 # Relation
   has_many :posts
-  has_many :follow_requests, dependent: :destroy, foreign_key: :following_id
-  has_many :follow_okays, dependent: :destroy, foreign_key: :followed_id
+  has_many :following_requests, dependent: :destroy, foreign_key: :following_id, class_name: "FollowRequest"
+  has_many :followed_requests, dependent: :destroy, foreign_key: :followed_id, class_name: "FollowRequest"
+  has_many :following_okays, dependent: :destroy, foreign_key: :following_id, class_name: "FollowRequest"
+  has_many :followed_okays, dependent: :destroy, foreign_key: :followed_id, class_name: "FollowRequest"
   mount_uploader :image, ImageUploader
 
 # Enum
@@ -38,7 +40,7 @@ class User < ApplicationRecord
   end
 ## フォローリクエスト判定
   def already_requested?(followed)
-    self.follow_requests.exists?(followed_id: followed.id)
+    self.following_requests.exists?(followed_id: followed.id)
   end
 
 end

@@ -1,7 +1,24 @@
-<% @requests.each do |request| %>
-  <% if request.followed_id == current_user.id %>
-    <%= request.following.name %>
-    <%= link_to "フォロー承認", followed_followed_allow_path(followed_id:current_user.id, id:request.id), method: :post %> 
-    <%= link_to "フォロー拒否", followed_followed_follow_request_path(followed_id:current_user.id, id:request.id), method: :delete %>
+<div class="followed-lists">
+  <p>フォローリクエストが来ています</p>
+  <% @followed_requests.each do |request| %>
+    <% if request.followed_id == current_user.id %>
+      <%= request.following.name %>
+      <%= link_to "フォロー承認", followed_followed_allow_path(followed_id:current_user.id, id:request.id), method: :post %> 
+      <%= link_to "フォロー拒否", followed_followed_follow_request_path(followed_id:current_user.id, id:request.id), method: :delete %>
+    <% end %>
   <% end %>
-<% end %>
+</div>
+
+<div class="following-lists">
+  <p>フォローリクエスト申請中です</p>
+  <% @following_requests.each do |request| %>
+    <% if request.following_id == current_user.id %>
+      <%= request.followed.name %>
+    <% end %>
+  <% end %>
+</div>
+
+<div class="friend-lists">
+  <p>仲間一覧</p>
+</div>
+
