@@ -16,8 +16,8 @@ class Followed::FollowRequestsController < ApplicationController
   end
 
   def destroy
-      request = FollowRequest.find(params[:id])
-      request.destroy
-      redirect_back(fallback_location: root_path)
+    request = FollowRequest.find(params[:id])
+    request.destroy
+    redirect_back(fallback_location: root_path)
   end
 end
