@@ -4,15 +4,19 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+# Validation
   validates :name, presence: true, uniqueness: true
   validates :work, :adress, presence: true
 
+# Relation
   has_many :posts
-  
+  has_many :following_requests, dependent: :destroy, foreign_key: :following_id, class_name: "FollowRequest"
+  has_many :followed_requests, dependent: :destroy, foreign_key: :followed_id, class_name: "FollowRequest"
+  has_many :follow_okays, dependent: :destroy, foreign_key: :followed_id
   mount_uploader :image, ImageUploader
 
+# Enum
   enum gender: {男性:1, 女性:2}
-
   enum adress: {
     北海道:1,青森県:2,岩手県:3,宮城県:4,秋田県:5,山形県:6,福島県:7,
     茨城県:8,栃木県:9,群馬県:10,埼玉県:11,千葉県:12,東京都:13,神奈川県:14,
@@ -24,12 +28,26 @@ class User < ApplicationRecord
     福岡県:40,佐賀県:41,長崎県:42,熊本県:43,大分県:44,宮崎県:45,鹿児島県:46,沖縄県:47
   }
 
+# Method
+## 検索
   def self.search(search)
     if search
       User.where('work LIKE(?)', "%#{search}%")
     else
       User.all
     end
+  end
+## フォローリクエスト判定
+  def already_requested?(followed)
+    self.following_requests.exists?(followed_id: followed.id)
+  end
+## 仲間登録済み判定
+  def already_following?(following)
+    self.follow_okays.exists?(following_id: following.id)
+  end
+
+  def already_followed?(followed)
+    self.follow_okays.exists?(followed_id: followed.id)
   end
 
 end

@@ -41,7 +41,11 @@
     <div class="user-box">
       <div class="user-img">
         <%= link_to user_path(user.id) do %>
-          <%= image_tag user.image.url, class: "user-img__item" %>
+          <% if user.image? %>  
+            <%= image_tag user.image.url, class: "user-img__item" %>
+          <% else %>
+            <%= image_tag 'noimage2.png', class: "user-img__item"  %>
+          <% end %>
         <% end %>
         <div class="user-info">
           <%= link_to user_path(user.id) do %>

@@ -1,0 +1,56 @@
+<header>
+    <div class="header-left">
+      <h1>Follows*</h1>
+    </div>
+    <div class="header-right">
+      <ul class="header-nav">
+        <li><%= link_to "Home", root_path %></li>
+        <% if user_signed_in?%>
+          <li><%= link_to "マイページ", user_path(current_user.id) %></li>
+          <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+        <% else %>
+          <li><%= link_to "ログイン", new_user_session_path %></li>
+          <li><%= link_to "新規登録", new_user_registration_path %></li>
+        <% end %>
+      </ul> 
+    </div>
+</header>
+
+<div class="followed-lists">
+  <p>フォローリクエストが来ています</p>
+  <% @followed_requests.each do |request| %>
+    <% if request.followed_id == current_user.id %>
+      <%= link_to user_path(request.following.id) do %>
+        <%= request.following.name %>
+      <% end %>
+      <%= link_to "フォロー承認", followed_followed_allow_path(followed_id:current_user.id, id:request.id), method: :post %> 
+      <%= link_to "フォロー拒否", followed_followed_follow_request_path(followed_id:current_user.id, id:request.id), method: :delete %>
+    <% end %>
+  <% end %>
+</div>
+
+<div class="following-lists">
+  <p>フォローリクエスト申請中です</p>
+  <% @following_requests.each do |request| %>
+    <% if request.following_id == current_user.id %>
+      <%= link_to user_path(request.followed.id) do %>
+        <%= request.followed.name %>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>
+
+<div class="friend-lists">
+  <p>仲間一覧</p>
+  <% @follow_okays.each do |follow| %>
+    <% if follow.following_id == current_user.id %>
+      <%= link_to user_path(follow.followed.id) do %>
+        <%= follow.followed.name %>
+      <% end %>
+    <% else %>
+      <%= link_to user_path(follow.following.id) do %> 
+        <%= follow.following.name %>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>
