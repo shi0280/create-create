@@ -1,0 +1,7 @@
+<div class="content">
+  <p><%= recruitment.title %></p>
+  <p><%= recruitment.description %></p>
+  <% recruitment.images.each do |image| %>
+    <%= image_tag image.src.url %>
+  <% end %>
+</div>

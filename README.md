@@ -15,11 +15,12 @@
 ### Association
 - has_many :posts
 - has_many :messages
-- has_many :users_groups
-- has_many :groups,  through:  :users_groups
+- has_many :group_users
+- has_many :groups, through: :group_users
 - has_many :following_requests, foreign_key: :following_id, class_name: "FollowRequest"
 - has_many :followed_requests, foreign_key: :followed_id, class_name: "FollowRequest"
 - has_many :follow_okays, foreign_key: :followed_id
+- has_many :recruitments
 
 ## groupsテーブル
 |Column|Type|Options|
@@ -27,14 +28,14 @@
 |name|string|null: false, unique: true|
 ### Association
 - has_many :messages
-- has_many :users_groups
-- has_many :users,  through:  :users_groups
+- has_many :group_users
+- has_many :users, through: :group_users
 
 ## groups_usersテーブル
 |Column|Type|Options|
 |------|----|-------|
-|user_id|integer|null: false, foreign_key: true|
-|group_id|integer|null: false, foreign_key: true|
+|user_id|references|null: false, foreign_key: true|
+|group_id|references|null: false, foreign_key: true|
 ### Association
 - belongs_to :user
 - belongs_to :group
@@ -42,10 +43,10 @@
 ## messagesテーブル
 |Column|Type|Options|
 |------|----|-------|
-|message|text||
+|message|text|null: false|
 |image|string||
-|user_id|integer|null: false, foreign_key: true|
-|group_id|integer|null: false, foreign_key: true|
+|user_id|references|null: false, foreign_key: true|
+|group_id|references|null: false, foreign_key: true|
 ### Association
 - belongs_to :user
 - belongs_to :group
@@ -58,6 +59,18 @@
 |user_id|references|null: false, foreign_key: true|
 ### Association
 - belongs_to :user
+
+## recruitmentsテーブル
+|Column|Type|Options|
+|------|----|-------|
+|title|string|null: false|
+|image|string|null: false|
+|description|text|null: false|
+|address|integer|null: false|
+|user_id|references|null: false, foreign_key: true|
+|group_id|references|null: false, foreign_key: true|
+- belongs_to :user
+
 
 ## follow_requestsテーブル
 |Column|Type|Options|

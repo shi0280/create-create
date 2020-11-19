@@ -1,0 +1,30 @@
+<div class="post-form">
+  <div class="post-form__title">
+    <p>募集情報を投稿する</p>
+  </div>
+  <div class="post-form__box">
+    <%= form_for @group do |f| %>
+      <div class="post-field">
+        <%= f.text_field :name, placeholder: "グループ名" ,class: "form-part" %>
+      </div>
+
+      <div class="post-field">
+        <%= f.collection_check_boxes :user_ids, current_user.User.all, :id, :name %>
+      </div>
+      <%= f.fields_for :recruitment do |i| %>
+        <%= i.label :"タイトル*" %><br />
+        <%= i.text_field :title %><br />
+        <%= i.label :"イメージ*" %><br />
+        <%= i.file_field :image,class: "form-part" %><br />
+        <%= i.label :"地域*" %><br />
+        <%= i.select :adress, Recruitment.adresses.keys, {prompt: '選択してください'}, autofocus: true, autocomplete: "adress", class: "form-part" %><br />
+        <%= i.label :"説明文*" %><br />
+        <%= i.text_field :description %>
+      <% end %>
+
+      <div class="post-actions">
+        <%= f.submit "投稿",class: "form-part" %>
+      </div>
+    <% end %>
+  </div>
+</div>
