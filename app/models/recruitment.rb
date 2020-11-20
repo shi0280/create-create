@@ -1,10 +1,14 @@
 class Recruitment < ApplicationRecord
 
-  mount_uploader :src, ImageUploader
+  mount_uploader :image, ImageUploader
   
 # Relation  
-  belongs_to :user
   belongs_to :group
+# Validation
+  validates :title, presence: true
+  validates :image, presence: true
+  validates :adress, presence: true
+  validates :description, presence: true
 # Enum
   enum adress: {
     北海道:1,青森県:2,岩手県:3,宮城県:4,秋田県:5,山形県:6,福島県:7,

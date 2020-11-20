@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root to: "home#top"
   resources :posts, only: [:create, :destroy]
   resources :recruitments, only: [:index, :new, :create, :edit, :update, :destroy]
-  resources :groups, only: [:create, :destroy]
+  resources :groups, only: [:new, :create, :destroy]
   resources :users, only: [:index, :edit, :show, :update] do
     collection do
       get 'search'

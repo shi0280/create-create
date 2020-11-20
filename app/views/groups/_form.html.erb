@@ -1,3 +1,13 @@
+<% if @group.errors.any? %>
+  <div id="error_explanation" class="alert alert-danger">
+    <ul>
+      <% @group.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <div class="post-form">
   <div class="post-form__title">
     <p>募集情報を投稿する</p>
@@ -9,9 +19,10 @@
       </div>
 
       <div class="post-field">
-        <%= f.collection_check_boxes :user_ids, current_user.User.all, :id, :name %>
+        <%# <%= f.collection_check_boxes :user_ids, @users, :id, :name %> 
+        <%= f.collection_check_boxes :user_ids, User.all, :id, :name %>
       </div>
-      <%= f.fields_for :recruitment do |i| %>
+      <%= f.fields_for :recruitments do |i| %>
         <%= i.label :"タイトル*" %><br />
         <%= i.text_field :title %><br />
         <%= i.label :"イメージ*" %><br />

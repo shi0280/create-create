@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_19_090212) do
+ActiveRecord::Schema.define(version: 2020_11_20_010015) do
 
   create_table "follow_okays", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "following_id", null: false
@@ -61,11 +61,9 @@ ActiveRecord::Schema.define(version: 2020_11_19_090212) do
     t.integer "adress", null: false
     t.text "description", null: false
     t.bigint "group_id"
-    t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["group_id"], name: "index_recruitments_on_group_id"
-    t.index ["user_id"], name: "index_recruitments_on_user_id"
   end
 
   create_table "relationships", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -107,7 +105,6 @@ ActiveRecord::Schema.define(version: 2020_11_19_090212) do
   add_foreign_key "group_users", "users"
   add_foreign_key "posts", "users"
   add_foreign_key "recruitments", "groups"
-  add_foreign_key "recruitments", "users"
   add_foreign_key "relationships", "users"
   add_foreign_key "relationships", "users", column: "follow_id"
 end
