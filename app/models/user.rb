@@ -12,7 +12,8 @@ class User < ApplicationRecord
   has_many :posts
   has_many :following_requests, dependent: :destroy, foreign_key: :following_id, class_name: "FollowRequest"
   has_many :followed_requests, dependent: :destroy, foreign_key: :followed_id, class_name: "FollowRequest"
-  has_many :follow_okays, dependent: :destroy, foreign_key: :followed_id
+  has_many :following_okays, dependent: :destroy, foreign_key: :following_id, class_name: "FollowOkay"
+  has_many :followed_okays, dependent: :destroy, foreign_key: :followed_id, class_name: "FollowOkay"
   has_many :group_users
   has_many :groups, through: :group_users
 
@@ -46,11 +47,11 @@ class User < ApplicationRecord
   end
 ## 仲間登録済み判定
   def already_following?(following)
-    self.follow_okays.exists?(following_id: following.id)
+    self.followed_okays.exists?(following_id: following.id)
   end
 
   def already_followed?(followed)
-    self.follow_okays.exists?(followed_id: followed.id)
+    self.following_okays.exists?(followed_id: followed.id)
   end
 
 end

@@ -3,7 +3,8 @@ class Followed::FollowRequestsController < ApplicationController
     @following_requests = current_user.following_requests.all
     @followed_requests = current_user.followed_requests.all
     @user = User.find(params[:followed_id])
-    @follow_okays = current_user.follow_okays.all
+    @following_okays = current_user.following_okays.all
+    @followed_okays = current_user.followed_okays.all
   end
 
   def allow

@@ -42,7 +42,7 @@
 
 <div class="friend-lists">
   <p>仲間一覧</p>
-  <% @follow_okays.each do |follow| %>
+  <% @following_okays.each do |follow| %>
     <% if follow.following_id == current_user.id %>
       <%= link_to user_path(follow.followed.id) do %>
         <%= follow.followed.name %>
@@ -50,6 +50,17 @@
     <% else %>
       <%= link_to user_path(follow.following.id) do %> 
         <%= follow.following.name %>
+      <% end %>
+    <% end %>
+  <% end %>
+  <% @followed_okays.each do |follow| %>
+    <% if follow.followed_id == current_user.id %>
+      <%= link_to user_path(follow.following.id) do %>
+        <%= follow.following.name %>
+      <% end %>
+    <% else %>
+      <%= link_to user_path(follow.followed.id) do %> 
+        <%= follow.followed.name %>
       <% end %>
     <% end %>
   <% end %>
