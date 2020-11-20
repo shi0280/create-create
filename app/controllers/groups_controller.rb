@@ -7,8 +7,9 @@ class GroupsController < ApplicationController
   end
 
   def new
-    follow = current_user.follow_okays.new
-    @users = User.where(id: follow.followed_id).or(User.where(id: follow.following_id))
+    ids1 = current_user.following_okays.pluck(:followed_id) 
+    ids2 = current_user.followed_okays.pluck(:following_id) 
+    @users = User.where(id: ids1).or(User.where(id: ids2))
     @group = Group.new
     @group.recruitments.new
     @group.users << current_user
@@ -17,9 +18,9 @@ class GroupsController < ApplicationController
   def create
     @group = Group.new(recruitment_params)
     if @group.save
-      redirect_to root_path, notice:"投稿完了しました。"
+      redirect_to root_path, notice:"募集情報の投稿が完了しました。"
     else
-      flash.now[:alert] = "投稿失敗しました。"
+      flash.now[:alert] = "募集情報の投稿に失敗しました。"
       render :new
     end
   end

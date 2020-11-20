@@ -1,12 +1,12 @@
 <header>
     <div class="header-left">
-      <h1>Ivent*</h1>
+      <h1>Invitation*</h1>
     </div>
     <div class="header-right">
       <ul class="header-nav">
         <li><%= link_to "Home", root_path %></li>
         <% if user_signed_in?%>
-          <li><%= link_to "イベント投稿", user_path(current_user.id) %></li>
+          <li><%= link_to "マイページ", user_path(current_user.id) %></li>
           <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
         <% else %>
           <li><%= link_to "ログイン", new_user_session_path %></li>
