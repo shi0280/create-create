@@ -1,6 +1,11 @@
 class MembersController < ApplicationController
   before_action :set_users
 
+  def index
+    @user = current_user
+    @members = Member.order('created_at DESC').order("RAND()").limit(5)
+  end
+
   def new
     @member = Member.new
     @member.users << current_user

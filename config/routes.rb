@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root to: "home#top"
   resources :posts, only: [:create, :destroy]
   resources :members, only: [:index, :new, :create, :edit, :update, :destroy] do
-    resources :messages, only: [:index, :create]
+    resources :messages, only: [:index, :create ,:destroy]
   end
   resources :groups, only: [:index, :new, :edit, :update, :create, :destroy]
   resources :users, only: [:index, :edit, :show, :update] do
