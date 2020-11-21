@@ -2,8 +2,8 @@ Rails.application.routes.draw do
   devise_for :users
   root to: "home#top"
   resources :posts, only: [:create, :destroy]
-  resources :members, only: [:index, :new, :create, :edit, :update, :destroy] do
-    resources :messages, only: [:index, :create ,:destroy]
+  resources :members, only: [:new, :create, :edit, :update] do
+    resources :messages, only: [:index, :create, :destroy]
   end
   resources :groups, only: [:index, :new, :edit, :update, :create, :destroy]
   resources :users, only: [:index, :edit, :show, :update] do

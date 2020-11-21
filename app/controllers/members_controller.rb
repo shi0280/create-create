@@ -17,7 +17,7 @@ class MembersController < ApplicationController
     @users = User.where(id: ids1).or(User.where(id: ids2)).or(User.where(id: current_user))
     @member = Member.new(member_params)
     if @member.save
-      redirect_to root_path, notice: 'メンバーを作成しました'
+      redirect_to member_messages_path(@member), notice: 'メンバーを作成しました'
     else
       render :new
       flash.now[:alert] = "登録に失敗しました。"
@@ -25,13 +25,13 @@ class MembersController < ApplicationController
   end
 
   def edit
-    @memner = Member.find(params[:id])
+    @member = Member.find(params[:id])
   end
 
   def update
     @member = Member.find(params[:id])
     if @member.update(member_params)
-      redirect_to root_path, notice: 'メンバーを更新しました'
+      redirect_to member_messages_path(@member), notice: 'メンバーを更新しました'
     else
       render :edit
       flash.now[:alert] = "編集に失敗しました。"
@@ -41,7 +41,7 @@ class MembersController < ApplicationController
   def destroy
     @member = Member.find(params[:id])
     @member.destroy
-    redirect_to root_path, notice:"メンバーが削除されました。"
+    redirect_to member_messages_path(@member), notice:"メンバーが削除されました。"
   end
 
   private

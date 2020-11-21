@@ -10,6 +10,9 @@
           <li><%= user.name %></li>
         </ul>
       <% end %>
+      <%= link_to  edit_member_path(@member) do%>
+        <p>編集</p>
+      <% end %>
     </div>
   </div>
   <div class="main-message">
@@ -28,6 +31,9 @@
           <% end %>
           <% if  message.image.present? %>
           <%= image_tag "#{message.image}", class: "main-message__box1__image" %>
+          <% end %>
+          <%= link_to member_message_path(@member.id, message.id), method: :delete do %>
+            <i class="fas fa-trash-alt"></i>
           <% end %>
         </div>
       </div>
