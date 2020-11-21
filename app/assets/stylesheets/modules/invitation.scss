@@ -1,7 +1,6 @@
-.ivent-box {
+.invitation {
   display: flex;
   margin-top: 30px;
-  height: 1000px;
   .side {
     width: 20%;
     border-right: 1px solid #efefef;
@@ -11,8 +10,12 @@
     background-color: #f6f7f8;
     width: 100%;
     padding: 0 40px;
-    .post-box {
-      
+    .invitation-box {
+      .recruitment-image {
+        width: 250px;
+        height: 250px;
+        object-fit: cover;
+      }
     }
   }
 }

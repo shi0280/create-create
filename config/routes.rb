@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   devise_for :users
   root to: "home#top"
   resources :posts, only: [:create, :destroy]
+  resources :recruitments, only: [:new]
+  resources :groups, only: [:index, :new, :edit, :update, :create, :destroy]
   resources :users, only: [:index, :edit, :show, :update] do
     collection do
       get 'search'
@@ -22,5 +24,4 @@ Rails.application.routes.draw do
     end
   end
   get 'home/message'
-  get 'home/ivent'
 end
