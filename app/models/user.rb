@@ -16,6 +16,9 @@ class User < ApplicationRecord
   has_many :followed_okays, dependent: :destroy, foreign_key: :followed_id, class_name: "FollowOkay"
   has_many :group_users
   has_many :groups, through: :group_users
+  has_many :member_users
+  has_many :members, through: :member_users
+  has_many :messages
 
   mount_uploader :image, ImageUploader
 

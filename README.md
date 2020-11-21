@@ -17,6 +17,8 @@
 - has_many :messages
 - has_many :group_users
 - has_many :groups, through: :group_users
+- has_many :member_users
+- has_many :members, through: :member_users
 - has_many :following_requests, foreign_key: :following_id, class_name: "FollowRequest"
 - has_many :followed_requests, foreign_key: :followed_id, class_name: "FollowRequest"
 - has_many :follow_okays, foreign_key: :followed_id
@@ -40,16 +42,34 @@
 - belongs_to :user
 - belongs_to :group
 
+## membersテーブル
+|Column|Type|Options|
+|------|----|-------|
+|name|string|null: false, unique: true|
+### Association
+- has_many :messages
+- has_many :member_users
+- has_many :members, through: :member_users
+
+## members_usersテーブル
+|Column|Type|Options|
+|------|----|-------|
+|user_id|references|null: false, foreign_key: true|
+|member_id|references|null: false, foreign_key: true|
+### Association
+- belongs_to :user
+- belongs_to :member
+
 ## messagesテーブル
 |Column|Type|Options|
 |------|----|-------|
 |message|text|null: false|
 |image|string||
 |user_id|references|null: false, foreign_key: true|
-|group_id|references|null: false, foreign_key: true|
+|member_id|references|null: false, foreign_key: true|
 ### Association
 - belongs_to :user
-- belongs_to :group
+- belongs_to :member
 
 ## postsテーブル
 |Column|Type|Options|

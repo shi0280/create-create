@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_20_010015) do
+ActiveRecord::Schema.define(version: 2020_11_21_045636) do
 
   create_table "follow_okays", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "following_id", null: false
@@ -44,6 +44,33 @@ ActiveRecord::Schema.define(version: 2020_11_20_010015) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["name"], name: "index_groups_on_name", unique: true
+  end
+
+  create_table "member_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "member_id"
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["member_id"], name: "index_member_users_on_member_id"
+    t.index ["user_id"], name: "index_member_users_on_user_id"
+  end
+
+  create_table "members", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_members_on_name", unique: true
+  end
+
+  create_table "messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "message"
+    t.string "image"
+    t.bigint "member_id"
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["member_id"], name: "index_messages_on_member_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
   create_table "posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -103,6 +130,10 @@ ActiveRecord::Schema.define(version: 2020_11_20_010015) do
   add_foreign_key "follow_requests", "users", column: "following_id"
   add_foreign_key "group_users", "groups"
   add_foreign_key "group_users", "users"
+  add_foreign_key "member_users", "members"
+  add_foreign_key "member_users", "users"
+  add_foreign_key "messages", "members"
+  add_foreign_key "messages", "users"
   add_foreign_key "posts", "users"
   add_foreign_key "recruitments", "groups"
   add_foreign_key "relationships", "users"

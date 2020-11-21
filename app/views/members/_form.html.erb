@@ -1,0 +1,30 @@
+<% if @member.errors.any? %>
+  <div id="error_explanation" class="alert alert-danger">
+    <ul>
+      <% @member.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<div class="post-form">
+  <div class="post-form__title">
+    <p>メンバーを登録する</p>
+  </div>
+  <div class="post-form__box">
+    <%= form_for @member do |f| %>
+      <div class="post-field">
+        <%= f.text_field :name, placeholder: "メンバー名" ,class: "form-part" %>
+      </div>
+
+      <div class="post-field">
+        <%= f.collection_check_boxes :user_ids, @users, :id, :name %>
+      </div>
+  
+      <div class="post-actions">
+        <%= f.submit "投稿",class: "form-part" %>
+      </div>
+    <% end %>
+  </div>
+</div>

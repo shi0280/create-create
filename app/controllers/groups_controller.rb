@@ -1,6 +1,7 @@
 class GroupsController < ApplicationController  
   before_action :move_to_index, except: [:index]
   before_action :authenticate_user!, except: [:index]
+  before_action :set_users, except: [:index]
 
   def index
     @q = Group.includes(:recruitments).order('created_at DESC').ransack(params[:q])
@@ -9,9 +10,6 @@ class GroupsController < ApplicationController
   end
 
   def new
-    ids1 = current_user.following_okays.pluck(:followed_id) 
-    ids2 = current_user.followed_okays.pluck(:following_id) 
-    @users = User.where(id: ids1).or(User.where(id: ids2))
     @group = Group.new
     @group.recruitments.new
     @group.users << current_user
@@ -51,6 +49,12 @@ class GroupsController < ApplicationController
   
   def move_to_index
     redirect_to action: :index unless user_signed_in?
+  end
+
+  def set_users
+    ids1 = current_user.following_okays.pluck(:followed_id) 
+    ids2 = current_user.followed_okays.pluck(:following_id) 
+    @users = User.where(id: ids1).or(User.where(id: ids2)).or(User.where(id: current_user))
   end
 
 end

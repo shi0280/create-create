@@ -22,14 +22,22 @@
 <body>
   <div class ="message-box" >
     <div class="side">
-      <div class="group">
-        <p>グループA</p>
+      <div class= "new-group">
+        <%= link_to "Make Member", new_member_path %>
       </div>
-      <div class="group">
-        <p>グループB</p>
-      </div>
-      <div class="group">
-        <p>グループC</p>
+      <div class="member">
+        <% @members.each do |member| %>
+          <%= member.name %> <br>
+          <p><%= member.users.count %>人</p>
+          <% member.users.each do |user| %>
+            <ul>             
+              <%= link_to user_path(user) do %>
+                <li><%= user.name %></li>
+                <li><%= image_tag "#{user.image}", class: "member-image" %></li>
+              <% end %>
+            </ul>
+          <% end %>
+        <% end %>
       </div>
     </div>
     <div class="main">

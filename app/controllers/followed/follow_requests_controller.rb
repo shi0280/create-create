@@ -10,7 +10,7 @@ class Followed::FollowRequestsController < ApplicationController
   def allow
     request = FollowRequest.find(params[:id])
     following = User.find_by(id:request.following_id)
-    follow = current_user.follow_okays.new(followed_id:current_user.id, following_id: following.id)
+    follow = current_user.followed_okays.new(followed_id:current_user.id, following_id: following.id)
     follow.save 
     request.destroy 
     redirect_back(fallback_location: root_path)
