@@ -16,52 +16,81 @@
     </div>
 </header>
 
-<div class="followed-lists">
-  <p>フォローリクエストが来ています</p>
-  <% @followed_requests.each do |request| %>
-    <% if request.followed_id == current_user.id %>
-      <%= link_to user_path(request.following.id) do %>
-        <%= request.following.name %>
-      <% end %>
-      <%= link_to "フォロー承認", followed_followed_allow_path(followed_id:current_user.id, id:request.id), method: :post %> 
-      <%= link_to "フォロー拒否", followed_followed_follow_request_path(followed_id:current_user.id, id:request.id), method: :delete %>
-    <% end %>
+<div class="follow">
+  <% if @followed_requests.exists? %>
+    <div class="followed-lists">
+      <p>フォローリクエストが来ています</p>
+      <div class="followed-lists__item">
+        <% @followed_requests.each do |request| %>
+          <div class="followed-lists__item__part">
+            <% if request.followed_id == current_user.id %>
+              <%= link_to user_path(request.following.id) do %>
+                <p><%= request.following.name %></p>
+                <p><%= image_tag request.following.image.url, class: "followed-lists__item__part__img" %></p>
+              <% end %>
+              <%= link_to "フォロー承認", followed_followed_allow_path(followed_id:current_user.id, id:request.id), method: :post %> 
+              <%= link_to "フォロー拒否", followed_followed_follow_request_path(followed_id:current_user.id, id:request.id), method: :delete %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>  
   <% end %>
-</div>
 
-<div class="following-lists">
-  <p>フォローリクエスト申請中です</p>
-  <% @following_requests.each do |request| %>
-    <% if request.following_id == current_user.id %>
-      <%= link_to user_path(request.followed.id) do %>
-        <%= request.followed.name %>
-      <% end %>
-    <% end %>
+  <% if @following_requests.exists? %>
+    <div class="following-lists">
+      <p>フォローリクエスト申請中です</p>
+      <div class="following-lists__item">
+        <% @following_requests.each do |request| %>
+          <div class="following-lists__item__part">
+            <% if request.following_id == current_user.id %>
+              <%= link_to user_path(request.followed.id) do %>
+                <p><%= request.followed.name %></p>
+                <p><%= image_tag request.followed.image.url, class: "following-lists__item__part__img" %></p>
+              <% end %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
   <% end %>
-</div>
 
-<div class="friend-lists">
-  <p>仲間一覧</p>
-  <% @following_okays.each do |follow| %>
-    <% if follow.following_id == current_user.id %>
-      <%= link_to user_path(follow.followed.id) do %>
-        <%= follow.followed.name %>
+  <div class="friend-lists">
+    <p>仲間一覧</p>
+    <div class="friend-lists__item">
+      <% if @following_okays.exists? || @followed_okays.exists? %>
+        <% @following_okays.each do |follow| %>
+          <div class="friend-lists__item__part">
+            <% if follow.following_id == current_user.id %>
+              <%= link_to user_path(follow.followed.id) do %>
+                <p><%= follow.followed.name %></p>
+                <p><%= image_tag follow.followed.image.url, class: "friend-lists__item__part__img" %></p>
+              <% end %>
+            <% else %>
+              <%= link_to user_path(follow.following.id) do %> 
+                <p><%= follow.following.name %></p>
+                <p><%= image_tag follow.following.image.url, class: "friend-lists__item__part__img" %></p>
+              <% end %>
+            <% end %>
+          </div>
+        <% end %>
+        <% @followed_okays.each do |follow| %>
+          <div class="friend-lists__item__part">
+            <% if follow.followed_id == current_user.id %>
+              <%= link_to user_path(follow.following.id) do %>
+                <p><%= follow.following.name %></p>
+                <p><%= image_tag follow.following.image.url, class: "friend-lists__item__part__img" %></p>
+              <% end %>
+            <% else %>
+              <%= link_to user_path(follow.followed.id) do %> 
+                <p><%= follow.followed.name %></p>
+                <p><%= image_tag follow.followed.image.url, class: "friend-lists__item__part__img" %></p>
+              <% end %>
+            <% end %>
+          </div>
+        <% end %>
+      <% else %>
+        <p>まだ、仲間を登録していません。</p>
       <% end %>
-    <% else %>
-      <%= link_to user_path(follow.following.id) do %> 
-        <%= follow.following.name %>
-      <% end %>
-    <% end %>
-  <% end %>
-  <% @followed_okays.each do |follow| %>
-    <% if follow.followed_id == current_user.id %>
-      <%= link_to user_path(follow.following.id) do %>
-        <%= follow.following.name %>
-      <% end %>
-    <% else %>
-      <%= link_to user_path(follow.followed.id) do %> 
-        <%= follow.followed.name %>
-      <% end %>
-    <% end %>
-  <% end %>
+  </div>
 </div>

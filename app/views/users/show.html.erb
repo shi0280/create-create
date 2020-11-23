@@ -11,8 +11,8 @@
         <li><%= link_to "Home", root_path %></li>
         <% if @user.id == current_user.id %>
           <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
-          <li><%= link_to "プロフィール編集", edit_user_path(@user.id) %></li>
-          <li><%= link_to "仲間", followed_followed_follow_requests_path(@user.id) %></li>
+          <li><%= link_to "プロフィール編集", edit_user_path(@user.id) %><i class="fas fa-edit"></i></li>
+          <li><%= link_to "仲間", followed_followed_follow_requests_path(@user.id) %><i class="fas fa-users"></i></li></li>
           <li><%= link_to "メッセージ", home_message_path %> <i class="far fa-comment-alt"></i></li>
         <% else %>
           <li><%= link_to "マイページ", user_path(current_user.id) %></li>
@@ -43,48 +43,62 @@
   </div>
   <% if @user.id != current_user.id %>
     <% if current_user.already_followed?(@user) %>
-      <p>すでに仲間登録済みです</p>
+      <div class="fololowed-btn">
+        仲間登録済みです
+      </div>
     <% elsif current_user.already_following?(@user) %>
-      <p>すでに仲間登録済みです</p>
+      <div class="fololowed-btn">
+        仲間登録済みです
+      </div>
     <% elsif current_user.already_requested?(@user) %>
-      <%= link_to "フォローリクエスト取消", following_followed_follow_requests_path(followed_id:@user.id), method: :delete %>
+      <%= link_to following_followed_follow_requests_path(followed_id:@user.id), method: :delete do %>
+        <div class="fololow-btn1">
+          フォローリクエスト取消
+        </div>
+      <% end %>
     <% else %>
-      <%= link_to "フォローリクエスト送信", following_followed_follow_requests_path(followed_id:@user.id), method: :post %>
+      <%= link_to following_followed_follow_requests_path(followed_id:@user.id), method: :post do %>
+        <div class="fololow-btn2">
+          フォローリクエスト送信
+        </div>
+      <% end %>
     <% end %>
   <% end %>
 </div>
 
-<% if @user.id == current_user.id %>
-  <div class="post-form">
-    <div class="post-form__title">
-      <p>作品を投稿する</p>
-    </div>
-    <div class="post-form__box">
-      <%= form_with(model: [@post], local: true) do |form| %>
-        <div class="post-field">
-          <%= form.text_field :title, placeholder: "タイトル" ,class: "form-part" %>
-        </div>
+<div class="post-index">
+  <% if @user.id == current_user.id %>
+    <div class="post-form">
+      <div class="post-form__title">
+        <p>作品を投稿する</p>
+      </div>
+      <div class="post-form__box">
+        <%= form_with(model: [@post], local: true) do |form| %>
+          <div class="post-field">
+            <%= form.text_field :title, placeholder: "タイトル" ,class: "form-part" %>
+          </div>
 
-        <div class="post-field">
-          <%= form.file_field :image,class: "form-part" %>
-        </div>
+          <div class="post-field">
+            <%= form.file_field :image,class: "form-part1" %>
+          </div>
 
-        <div class="post-actions">
-          <%= form.submit "投稿",class: "form-part" %>
-        </div>
-      <% end %>
-    </div>
-  </div>
-<% end %>
-
-<div class="post-box">
-  <% @user.posts.each do |post| %>
-    <div class="post">
-      <%= image_tag post.image.url, class: "post-image" %>
-      <div class="icons">
-        <h5><%= post.user.name %></h5>
-        <p><%= post.title %></p>
+          <div class="post-field"">
+            <%= form.submit "投稿",class: "sign-up" %>
+          </div>
+        <% end %>
       </div>
     </div>
   <% end %>
+
+  <div class="post-box">
+    <% @user.posts.each do |post| %>
+      <div class="post">
+        <%= image_tag post.image.url, class: "post-image" %>
+        <div class="icons">
+          <h5><%= post.user.name %></h5>
+          <p><%= post.title %></p>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>

@@ -15,45 +15,49 @@
   </div>
 </header>
 
-
-<div class="search-box">
-  <%= search_form_for @q do |f| %>
-    <div class="search-item">
-      <%= f.label :work, "Work: 　" %>
-      <%= f.search_field :work_cont %>
-    </div>
-    <div class="search-item">
-      <%= f.label :age, "Age:　　" %>
-      <%= f.number_field :age_gteq %>以上〜
-      <%= f.number_field :age_lt %>未満
-    </div>
-    <div class="search-item">
-      <%= f.label :adress, "Address:" %>
-      <%= f.select :adress_eq, User.adresses.to_a.map{|k, v| [User.adresses_i18n[k], v]} %>
-    </div>
-    <%= f.submit "検索" %> 
-  <% end %>
-</div>
-
-<div class="users">
-  <% @users.each do |user| %>
-    <div class="user-box">
-      <div class="user-img">
-        <%= link_to user_path(user.id) do %>
-          <% if user.image? %>  
-            <%= image_tag user.image.url, class: "user-img__item" %>
-          <% else %>
-            <%= image_tag 'noimage2.png', class: "user-img__item"  %>
-          <% end %>
-        <% end %>
-        <div class="user-info">
-          <%= link_to user_path(user.id) do %>
-            <p><%= user.name %></p>
-            <p><%= user.work %></p>
-            <p><%= user.adress %></p>
-          <% end %>
+<div class="user-index">
+  <div class="side">
+    <div class="search-box">
+      <%= search_form_for @q do |f| %>
+        <div class="search-item">
+          <%= f.label :work, "Work: 　" %>
+          <%= f.search_field :work_cont, class: "form-part1" %>
         </div>
-      </div>
+        <div class="search-item">
+          <%= f.label :age, "Age:　　" %>
+          <%= f.number_field :age_gteq, class: "form-part" %><br><span>以上〜</span>
+          <%= f.number_field :age_lt, class: "form-part" %><br><span>未満</span>
+        </div>
+        <div class="search-item">
+          <%= f.label :adress, "Address:" %>
+          <%= f.select :adress_eq, User.adresses.to_a.map{|k, v| [User.adresses_i18n[k], v]}, class: "form-part" %>
+        </div>
+        <%= f.submit "search", class: "sign-up" %> 
+      <% end %>
     </div>
-  <% end %>
+  </div>
+  <div class="main">
+    <div class="users">
+      <% @users.each do |user| %>
+        <div class="user-box">
+          <div class="user-img">
+            <%= link_to user_path(user.id) do %>
+              <% if user.image? %>  
+                <%= image_tag user.image.url, class: "user-img__item" %>
+              <% else %>
+                <%= image_tag 'noimage2.png', class: "user-img__item"  %>
+              <% end %>
+            <% end %>
+            <div class="user-info">
+              <%= link_to user_path(user.id) do %>
+                <p><%= user.name %></p>
+                <p><%= user.work %></p>
+                <p><%= user.adress %></p>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>

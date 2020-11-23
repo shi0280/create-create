@@ -20,8 +20,14 @@
 @import "modules/message";
 @import "modules/invitation";
 @import "modules/member";
+@import "modules/follow";
 @import "bootstrap";
 
 body {
   color: #3C455C;
+}
+
+
+a {
+  text-decoration: none;
 }

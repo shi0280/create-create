@@ -1,0 +1,36 @@
+.follow {
+  padding: 40px;
+  background-color: #f6f7f8;
+  .following-lists, .followed-lists, .friend-lists  {
+    opacity: 80%;
+    &__item {
+      display: flex;
+      flex-wrap: wrap;
+      &__part {
+        text-align: center;
+        width: 200px;
+        margin-bottom: 50px;
+        &__img {
+          width: 200px;
+          height: 200px;
+          object-fit: cover;
+          clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+        }
+        a {
+          text-decoration: none;
+        }
+        p {
+          margin: 3px;
+          color: #3C455C;
+          font-size: 15px;
+        }
+      }
+      // &__part:hover {
+      //   opacity: 50%;
+      // }
+    }
+  }
+  .user-box:hover {
+    opacity: 50%;
+  }
+}

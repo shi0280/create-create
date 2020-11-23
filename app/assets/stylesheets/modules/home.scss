@@ -35,7 +35,6 @@ header {
       height: 300px;
       margin-top:50px;
       padding: 20px;
-      // border: 1px solid #DDE2E3;
       p {
         color: #DDE2E3;
         font-size: 25px;
@@ -46,6 +45,9 @@ header {
       a {
         text-decoration: none;
         color: #DDE2E3;
+      }
+      p :hover {
+        color: #9AACB8;
       }
     }
     .home-img1 {

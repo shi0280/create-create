@@ -16,6 +16,7 @@
       <% if member.users.count > 1 %>
         <p>他{<%= member.users.count-1 %>人}</p>
       <% end %>
+      <%= member.show_last_message %><br>
     <% end %>
   </div>
 </div>

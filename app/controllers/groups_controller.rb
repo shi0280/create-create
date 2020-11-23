@@ -25,9 +25,16 @@ class GroupsController < ApplicationController
     end
   end
 
+  def edit
+    @group = Group.find(params[:id])
+  end
+
   def update
     @group = Group.find(params[:id])
-    if @group.update(recruitments_params)
+    if recruitment_params[:recruitments_attributes].nil?
+      render :edit
+    end
+    if @group.update(recruitment_params)
       redirect_to root_path, notice:"募集情報が変更されました。"
     else
       render :edit

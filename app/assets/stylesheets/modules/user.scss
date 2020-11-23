@@ -1,3 +1,4 @@
+// ユーザー登録・ログイン
 .user-new-area, .login-area {
   display: flex;
   justify-content: center;
@@ -44,6 +45,7 @@
   }
 }
 
+// マイページ
 .profile-box {
   margin-top: 50px;
   display: flex;
@@ -63,82 +65,155 @@
       height: 350px;
       object-fit: cover;
       clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
-
     }
   }
+  .fololow-btn1 {
+    padding: 8px;
+    background-color: #cccccc;
+    border-radius: 3px;
+  }
+  .fololow-btn1 :hover .fololow-btn1 :hover {
+    color: #3C455C;
+  }
+  a {
+    display: block;
+    height: 40px;
+    text-decoration: none;
+    font-size: 15px;
+    color: #fff;
+  }
+  a:link {
+    text-decoration: none;
+  }
+  .fololow-btn2 {
+    padding: 8px;
+    background-color:	#BDB76B;
+    border-radius: 3px;
+  }
+  .fololowed-btn {
+    height: 40px;
+    padding: 8px;
+    background-color:	#9AACB8;
+    border-radius: 3px;
+    color: #fff;
+  }
 }
 
-.post-form {
-  padding: 20px 0;
-  opacity: 70%;
-  width: 100%;
+.post-index {
   display: flex;
-  justify-content: start;
-  &__title {
-    margin-left: 240px;
-  }
-  &__box {
-    margin-left: 20px;
-  }
-}
-
-.search-box {
-  padding: 40px;
-  .search-input {
-    border: 1px solid #DDE2E3;
-    padding: 10px;
-    width: 500px;
-  }
-  .search-btn {
-    padding: 12px;
-    border: none;
-    background-color: #9AACB8;
-  }
-}
-
-.users {
-  padding: 40px;
-  display: flex;
-  flex-wrap: wrap;
-  background-color: #DDE2E3;
-  .user-box {
-    margin-right: 70px;
+  .post-form {
     padding: 40px;
-    opacity: 80%;
-     .user-img {
-      &__item {
-        width: 250px;
-        height: 250px;
+    width: 25%;
+    background-color: #f6f7f8;
+    &__title {
+      font-weight: bold;
+    }
+    &__box {
+      .post-field {
+        margin-bottom: 20px;
+        .form-part {
+          padding: 10px;
+          border: 1px solid #DDE2E3;
+          width: 80%;
+        }
+        .sign-up {
+          padding: 10px;
+          border: none;
+          background-color: #DDE2E3;
+          border-radius: 3px;
+        }
+      }
+    }
+  }
+  .post-box {
+    width: 100%;
+    padding: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    .post {
+      color: #9AACB8;
+      margin: 20px 20px;
+      .post-image {
+        width: 292px;
+        height: 292px;
         object-fit: cover;
-        clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
-      }
-      .user-info {
-        text-align: center;
-        margin-top: 20px;
-        a {
-          text-decoration: none;
-        }
-        p {
-          margin: 3px;
-          color: #B37C57;
-        }
       }
     }
   }
 }
 
-.post-box {
-  margin-top: 50px;
+
+
+// ユーザー一覧
+.user-index {
   display: flex;
-  flex-wrap: wrap;
-  .post {
-    color: #9AACB8;
-    margin: 20px 20px;
-    .post-image {
-      width: 400px;
-      height: 400px;
-      object-fit: cover;
+  margin-top: 30px;
+  .side {
+    width: 25%;
+    border-right: 1px solid #efefef;
+    .search-box {
+      padding: 40px;
+      .search-item {
+        margin-bottom: 20px;
+        .form-part1 {
+          padding: 10px;
+          border: none;
+          background-color: #DDE2E3;
+        }
+        .form-part {
+          padding: 10px;
+          border: 1px solid #DDE2E3;
+        }
+        span {
+          color: #A9A9A9;
+          text-align: right;
+        }
+      }
     }
-
+    .sign-up {
+      padding: 10px;
+      border: none;
+      background-color: #DDE2E3;
+      border-radius: 3px;
+    }
+  }
+  .main {
+    width: 100%;
+    .users {
+      padding: 40px;
+      display: flex;
+      flex-wrap: wrap;
+      background-color: #f6f7f8;
+      .user-box {
+        padding: 40px;
+        opacity: 80%;
+         .user-img {
+          &__item {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+          }
+          .user-info {
+            text-align: center;
+            margin-top: 20px;
+            a {
+              text-decoration: none;
+            }
+            p {
+              margin: 3px;
+              color: #3C455C;
+              font-size: 13px;
+            }
+          }
+        }
+      }
+      .user-box:hover {
+        opacity: 50%;
+      }
+    }
   }
 }
+
+
+

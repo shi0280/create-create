@@ -18,40 +18,62 @@
 
 <div class="invitation">
   <div class="side">
-    <%= search_form_for @q do |f| %>
-      <%= f.label :name, "グループ名" %>
-      <%= f.search_field :name_cont %>
-      <%= f.label :name, "ユーザー名" %>
-      <%= f.search_field :users_name_cont %>
-      <%=  f.label :title, "Keyword" %>
-      <%= f.search_field :name_or_recruitments_title_or_recruitments_description_cont %>
-      <%= f.label :adress, "Address:" %> 
-      <%= f.select :recruitments_adress_eq, Recruitment.adresses.to_a.map{|k, v| [Recruitment.adresses_i18n[k], v]}  %>
-
-      <%= f.submit "検索" %>
+    <%= search_form_for @q do |f| %>  
+      <div class="search-item">
+        <%= f.label :name, "グループ名" %>
+        <%= f.search_field :name_cont, class: "form-part" %>
+      </div>
+      <div class="search-item">
+        <%= f.label :name, "ユーザー名" %>
+        <%= f.search_field :users_name_cont, class: "form-part" %>
+      </div>
+      <div class="search-item">
+        <%= f.label :title, "Keyword" %>
+        <%= f.search_field :name_or_recruitments_title_or_recruitments_description_cont, class: "form-part1" %>
+      </div>
+      <div class="search-item">
+        <%= f.label :adress, "Address:" %> 
+        <%= f.select :recruitments_adress_eq, Recruitment.adresses.to_a.map{|k, v| [Recruitment.adresses_i18n[k], v]}, class: "form-part"  %>
+      </div>
+      <%= f.submit "検索", class: "sign-up" %>
     <% end %>
   </div>
   <div class="main">
     <div class="invitation-box">
       <% @groups.each do |group| %>
+        <div class="invitation-box__part">
           <%= group.name %>
-          <% group.users.each do |user| %>
-            <ul>             
-              <%= link_to user_path(user) do %>
-                <li><%= user.name %></li>
-                <li><%= image_tag "#{user.image}", class: "recruitment-image" %></li>
-              <% end %>
+        </div>
+        <div class="invitation-box__part2">
+          <p>Members</p>
+          <div class="invitation-box__part2__info">
+            <% group.users.each do |user| %>
+              <ul>             
+                <%= link_to user_path(user) do %>
+                  <li><%= user.name %></li>
+                  <li><%= image_tag "#{user.image}", class: "invitation-box__part2__info__image" %></li>
+                <% end %>
+              </ul>
+            <% end %>
+          </div>
+        </div>
+        <div class="invitation-box__part3">
+          <% group.recruitments.each do |recruitment| %>
+            <ul>
+              <li><%= recruitment.title %></li>
+              <li><%= image_tag "#{recruitment.image}", class: "invitation-box__part3__image" %></li>
+              <li><%= recruitment.adress %></li>
+              <li><%= recruitment.description %></li>
             </ul>
+          <% end %>
+          <%= link_to edit_group_path(group) do %>
+            <p>編集</p>
+          <% end %>
+          <%= link_to group_path(group), method: :delete do %>
+            <p>削除</p>
+          <% end %>
         <% end %>
-        <% group.recruitments.each do |recruitment| %>
-          <ul>
-            <li><%= recruitment.title %></li>
-            <li><%= image_tag "#{recruitment.image}", class: "recruitment-image" %></li>
-            <li><%= recruitment.adress %></li>
-            <li><%= recruitment.description %></li>
-          </ul>
-        <% end %>
-      <% end %>
+      </div>
     </div>
   </div>
 </div>

@@ -2,19 +2,68 @@
   display: flex;
   margin-top: 30px;
   .side {
-    width: 20%;
+    width: 25%;
     border-right: 1px solid #efefef;
     padding: 40px;
+    .search-item {
+      margin-bottom: 20px;
+      width: 100%;;
+      .form-part {
+        padding: 10px;
+        border: 1px solid #DDE2E3;
+      }
+      .form-part1 {
+        padding: 10px;
+        border: none;
+        background-color: #DDE2E3;
+      }
+    }
+    .sign-up {
+      padding: 10px;
+      border: none;
+      background-color: #DDE2E3;
+      border-radius: 3px;
+    }
   }
   .main {
     background-color: #f6f7f8;
     width: 100%;
-    padding: 0 40px;
     .invitation-box {
-      .recruitment-image {
-        width: 250px;
-        height: 250px;
-        object-fit: cover;
+      padding: 40px;
+      &__part {
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 40px;
+      }
+      &__part2 {
+        &__info {
+          display: flex;
+          margin-bottom: 40px;
+        ul {
+            margin-right: 10px;
+            a {
+              text-decoration: none;
+              color: #777777;
+            }
+          }
+          &__image {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 2px;
+          }
+          ul:hover {
+            opacity: 50%;
+          }
+        }
+      }
+      &__part3 {
+        &__image {
+          width: 500px;
+          height: 400px;
+          object-fit: cover;
+          margin: 0 auto;
+        }
       }
     }
   }
