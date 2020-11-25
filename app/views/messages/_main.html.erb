@@ -17,39 +17,61 @@
   </div>
   <div class="main-message">
     <% @messages.each do |message| %>
-      <div class="main-message__box1">
-        <div class="main-message__box1__info">
-          <ul>             
-            <li><%= message.user.name %></li>
-            <li><%= image_tag "#{message.user.image}", class: "main-message__box1__image" %></li>
-            <li><%= message.created_at.strftime("%Y年%m月%d日 %H時%M分") %>
-          </ul>
+      <% if message.user.id == current_user.id %>
+        <div class="main-message__box1">
+          <div class="main-message__box1__info">
+            <ul>             
+              <li><%= message.user.name %></li>
+              <li><%= image_tag "#{message.user.image}", class: "main-message__box1__info__image" %></li>
+              <li ><%= message.created_at.strftime("%Y年%m月%d日 %H時%M分") %>
+            </ul>
+          </div>
+          <div class="main-message__box1__info__message">
+            <% if message.message.present? %>
+              <p><%= message.message %></p>
+            <% end %>
+            <% if  message.image.present? %>
+            <%= image_tag "#{message.image}", class: "main-message__box1__image" %>
+            <% end %>
+          </div>
+          <div class="main-message__box1__info__trash">
+            <%= link_to member_message_path(@member.id, message.id), method: :delete do %>
+              <i class="fas fa-trash-alt"></i>
+            <% end %>
+          </div>
         </div>
-        <div class="main-message__box1__message">
-          <% if message.message.present? %>
-            <p><%= message.message %></p>
-          <% end %>
-          <% if  message.image.present? %>
-          <%= image_tag "#{message.image}", class: "main-message__box1__image" %>
-          <% end %>
-          <%= link_to member_message_path(@member.id, message.id), method: :delete do %>
-            <i class="fas fa-trash-alt"></i>
-          <% end %>
-        </div>
-      </div>
+      <% else %>
+        <div class="main-message__box2">
+          <div class="main-message__box2__info">
+            <ul>             
+              <li><%= message.user.name %></li>
+              <li><%= image_tag "#{message.user.image}", class: "main-message__box2__info__image" %></li>
+              <li ><%= message.created_at.strftime("%Y年%m月%d日 %H時%M分") %>
+            </ul>
+          </div>
+          <div class="main-message__box2__info__message">
+            <% if message.message.present? %>
+              <p><%= message.message %></p>
+            <% end %>
+            <% if  message.image.present? %>
+            <%= image_tag "#{message.image}", class: "main-message__box2__image" %>
+            <% end %>
+          </div>
+          <div class="main-message__box2__info__trash">
+            <%= link_to member_message_path(@member.id, message.id), method: :delete do %>
+              <i class="fas fa-trash-alt"></i>
+            <% end %>
+          </div>
+      <% end %>
     <% end %>
-   
-    <div class="main-message__box2">
-      こんにちは。ご無沙汰しております。
-    </div>
   </div>
   <div class="main-bottom">
     <%= form_with model:  [@member, @message], html: {class: "message-form"}, local: true do |f| %>
       <div class ="form-box"> 
         <%= f.text_field :message, class: "form-box__message", placeholder: "type a message" %>
         <%= f.file_field :image,class: "form-part" %>
-        <i class="fas fa-image"></i>
-        <%= f.submit %>
+        <%# <i class="fas fa-image"></i> %>
+        <%= f.submit class: "send" %>
       </div>
     <% end %>
   </div>
