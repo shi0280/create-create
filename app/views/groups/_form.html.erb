@@ -8,34 +8,30 @@
   </div>
 <% end %>
 
-<div class="post-form">
-  <div class="post-form__title">
-    <p>募集情報を投稿する</p>
-  </div>
-  <div class="post-form__box">
+<div class="recruit-new-area">
+  <div class="recruit-new-box">
+    <h2>募集情報を投稿する</h2> <br>
     <%= form_for @group do |f| %>
-      <div class="post-field">
-        <%= f.text_field :name, placeholder: "グループ名" ,class: "form-part" %>
+      <div class="form-group">
+        <%= f.text_field :name, placeholder: "グループ名" ,class: "form-part1" %>
       </div>
-
-      <div class="post-field">
+      <div class="form-group">
         <%= f.collection_check_boxes :user_ids, @users, :id, :name %>
       </div>
       <%= f.fields_for :recruitments do |i| %>
         <%= i.label :"タイトル*" %><br />
-        <%= i.text_field :title %><br />
+        <%= i.text_field :title, class: "form-part2" %><br />
         <%= i.label :"イメージ*" %><br />
-        <%= i.file_field :image,class: "form-part" %><br />
+        <%= i.file_field :image,class: "form-part2" %><br />
         <%= i.label :"地域*" %><br />
-        <%= i.select :adress, Recruitment.adresses.keys, {prompt: '選択してください'}, autofocus: true, autocomplete: "adress", class: "form-part" %><br />
+        <%= i.select :adress, Recruitment.adresses.keys, {prompt: '選択してください'}, autofocus: true, autocomplete: "adress", class: "form-part2" %><br />
         <%= i.label :"説明文*" %><br />
-        <%= i.text_field :description %>
+        <%= i.text_area :description, class: "form-part3" %>
       <% end %>
 
-      <div class="post-actions">
-        <%= f.submit "投稿",class: "form-part" %>
+      <div class="actions">
+        <%= f.submit "投稿する",class: "form-part2" %>
       </div>
     <% end %>
   </div>
-
 </div>
