@@ -8,3 +8,4 @@ class Group < ApplicationRecord
 # Validation
   validates :name, presence: true, uniqueness: true
 end
+

@@ -12,7 +12,7 @@ class GroupsController < ApplicationController
   def new
     @group = Group.new
     @group.users << current_user
-    @group.recruitments.new
+    @group.recruitments.new 
   end
 
   def create
