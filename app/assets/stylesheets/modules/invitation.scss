@@ -65,6 +65,16 @@
           margin: 0 auto;
         }
       }
+      .edit-btn {
+        padding: 8px;
+        background-color:	#9AACB8;
+        border-radius: 3px;
+        color: #fff;
+        text-decoration: none;
+      }
+      .edit-btn:hover {
+        opacity: 50%;
+      }
     }
   }
 }

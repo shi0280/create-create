@@ -11,12 +11,12 @@ class GroupsController < ApplicationController
 
   def new
     @group = Group.new
-    @group.recruitments.new
     @group.users << current_user
+    @group.recruitments.new
   end
 
   def create
-    @group = Group.new(recruitment_params)
+    @group = Group.new(group_params)
     if @group.save
       redirect_to root_path, notice:"募集情報の投稿が完了しました。"
     else
@@ -31,10 +31,10 @@ class GroupsController < ApplicationController
 
   def update
     @group = Group.find(params[:id])
-    if recruitment_params[:recruitments_attributes].nil?
+    if group_params[:recruitments_attributes].nil?
       render :edit
     end
-    if @group.update(recruitment_params)
+    if @group.update(group_params)
       redirect_to root_path, notice:"募集情報が変更されました。"
     else
       render :edit
@@ -50,7 +50,7 @@ class GroupsController < ApplicationController
 
   private
   
-  def recruitment_params
+  def group_params
     params.require(:group).permit(:name, user_ids: [], recruitments_attributes: [:title, :image, :adress, :description])
   end
   

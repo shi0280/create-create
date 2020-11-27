@@ -66,11 +66,9 @@
               <li><%= recruitment.description %></li>
             </ul>
           <% end %>
-          <%= link_to edit_group_path(group) do %>
-            <p>編集</p>
-          <% end %>
-          <%= link_to group_path(group), method: :delete do %>
-            <p>削除</p>
+          <% if group.user_ids = current_user.id %>
+            <%= link_to "編集", edit_group_path(group), class:"edit-btn" %>
+            <%= link_to "削除", group_path(group), method: :delete, class:"edit-btn" %>
           <% end %>
         <% end %>
       </div>

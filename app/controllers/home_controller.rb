@@ -5,7 +5,8 @@ class HomeController < ApplicationController
 
   def message
     @user = current_user
-    @members = Member.order('created_at DESC').order("RAND()").limit(5)
+    @member = Member.new
+    @members = @user.members.order('created_at DESC')
   end
 
 end
