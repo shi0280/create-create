@@ -41,37 +41,39 @@
   <div class="main">
     <div class="invitation-box">
       <% @groups.each do |group| %>
-        <div class="invitation-box__part">
-          <%= group.name %>
-        </div>
-        <div class="invitation-box__part2">
-          <p>Members</p>
-          <div class="invitation-box__part2__info">
-            <% group.users.each do |user| %>
-              <ul>             
-                <%= link_to user_path(user) do %>
-                  <li><%= user.name %></li>
-                  <li><%= image_tag "#{user.image}", class: "invitation-box__part2__info__image" %></li>
-                <% end %>
+        <div class="invitation-box" >
+          <div class="invitation-box__part">
+            <%= group.name %>
+          </div>
+          <div class="invitation-box__part2">
+            <p>Members</p>
+            <div class="invitation-box__part2__info">
+              <% group.users.each do |user| %>
+                <ul>             
+                  <%= link_to user_path(user) do %>
+                    <li><%= user.name %></li>
+                    <li><%= image_tag "#{user.image}", class: "invitation-box__part2__info__image" %></li>
+                  <% end %>
+                </ul>
+              <% end %>
+            </div>
+          </div>
+          <div class="invitation-box__part3">
+            <% group.recruitments.each do |recruitment| %>
+              <ul>
+                <li><%= recruitment.title %></li>
+                <li><%= image_tag "#{recruitment.image}", class: "invitation-box__part3__image" %></li>
+                <li><%= recruitment.adress %></li>
+                <li><%= recruitment.description %></li>
               </ul>
+            <% end %>
+            <% if group.user_ids = current_user.id %>
+              <%= link_to "編集", edit_group_path(group), class:"edit-btn" %>
+              <%= link_to "削除", group_path(group), method: :delete, class:"edit-btn" %>
             <% end %>
           </div>
         </div>
-        <div class="invitation-box__part3">
-          <% group.recruitments.each do |recruitment| %>
-            <ul>
-              <li><%= recruitment.title %></li>
-              <li><%= image_tag "#{recruitment.image}", class: "invitation-box__part3__image" %></li>
-              <li><%= recruitment.adress %></li>
-              <li><%= recruitment.description %></li>
-            </ul>
-          <% end %>
-          <% if group.user_ids = current_user.id %>
-            <%= link_to "編集", edit_group_path(group), class:"edit-btn" %>
-            <%= link_to "削除", group_path(group), method: :delete, class:"edit-btn" %>
-          <% end %>
-        <% end %>
-      </div>
+      <% end %>
     </div>
   </div>
 </div>
