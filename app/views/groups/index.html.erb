@@ -67,7 +67,7 @@
                 <li><%= recruitment.description %></li>
               </ul>
             <% end %>
-            <% if group.user_ids = current_user.id %>
+            <% if group.user_ids.include?( current_user.id ) %>
               <%= link_to "編集", edit_group_path(group), class:"edit-btn" %>
               <%= link_to "削除", group_path(group), method: :delete, class:"edit-btn" %>
             <% end %>
