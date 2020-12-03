@@ -30,15 +30,16 @@
     width: 100%;
     .invitation-box {
       padding: 40px;
+      border-bottom: 1px solid #DDE2E3;
       &__part {
         font-size: 20px;
         font-weight: bold;
-        margin-bottom: 40px;
+        margin-bottom: 20px;
       }
       &__part2 {
         &__info {
           display: flex;
-          margin-bottom: 40px;
+          margin-bottom: 20px;
         ul {
             margin-right: 10px;
             a {

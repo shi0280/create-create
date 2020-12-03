@@ -27,6 +27,7 @@
       margin-bottom : 40px;
       padding: 5px;
       .member-name {
+        font-size: 15px;
         font-weight: bold;
         color: #9AACB8;
       }
@@ -54,7 +55,7 @@
       .last-message {
         color: #9AACB8;
         font-size: 12px;
-        margin-bottom: 20px;
+        margin-bottom: 30px;
       }
     }
   }
@@ -83,7 +84,9 @@
         padding: 10px;
         border-radius: 2px;
         background-color: #fffacd;
-        margin-bottom: 50px;
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: space-around;
         &__info {
           ul {
             li {
@@ -116,7 +119,9 @@
         padding: 10px;
         border-radius: 2px;
         background-color: #efefef;
-        margin-bottom: 50px;
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: space-around;
         &__info {
           ul {
             li {
@@ -152,7 +157,7 @@
       height: 100px;
       border-top: 1px solid #efefef;
       .form-box__message {
-        width: 400px;
+        width: 800px;
         padding: 10px;
         border-radius: 3px;
         border: 1px solid #DDE2E3;

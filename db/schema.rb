@@ -139,3 +139,4 @@ ActiveRecord::Schema.define(version: 2020_11_21_045636) do
   add_foreign_key "relationships", "users"
   add_foreign_key "relationships", "users", column: "follow_id"
 end
+

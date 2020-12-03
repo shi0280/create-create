@@ -11,3 +11,4 @@ class CreateRecruitments < ActiveRecord::Migration[6.0]
     end
   end
 end
+

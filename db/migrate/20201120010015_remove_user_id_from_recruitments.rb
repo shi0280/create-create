@@ -3,3 +3,4 @@ class RemoveUserIdFromRecruitments < ActiveRecord::Migration[6.0]
     remove_column :recruitments, :user_id, :reference
   end
 end
+

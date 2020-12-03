@@ -27,3 +27,4 @@ Rails.application.routes.draw do
   end
   get 'home/message'
 end
+

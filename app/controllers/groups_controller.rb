@@ -12,7 +12,7 @@ class GroupsController < ApplicationController
   def new
     @group = Group.new
     @group.users << current_user
-    @group.recruitments.new
+    @group.recruitments.new 
   end
 
   def create
@@ -51,7 +51,7 @@ class GroupsController < ApplicationController
   private
   
   def group_params
-    params.require(:group).permit(:name, user_ids: [], recruitments_attributes: [:title, :image, :adress, :description])
+    params.require(:group).permit(:name, user_ids: [], recruitments_attributes: [:id, :title, :image, :adress, :description])
   end
   
   def move_to_index
